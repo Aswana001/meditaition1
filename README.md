@@ -169,7 +169,7 @@ Mood Tracker ↔ Recommendation Engine ↔ Activity Modules
 ```
 
 ## 🎥 Demo Video
-[Watch the MindfulMe Demo](https://youtube.com/mindfulme-demo)
+[Watch the MindfulMe Demo](https://youtu.be/E_glXAWQvYw)
 
 ## 🤝 Contributing
 We welcome contributions! Please follow these steps:
