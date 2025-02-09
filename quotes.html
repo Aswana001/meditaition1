@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Quotes - Calm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .quotes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: #3498db;
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .quote-text::before {
+            left: -1rem;
+            top: -1rem;
+        }
+
+        .quote-text::after {
+            right: -1rem;
+            bottom: -2rem;
+        }
+
+        .quote-author {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .quote-author::before {
+            content: "— ";
+        }
+
+        .quote-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .quote-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .quote-action-btn {
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .quote-action-btn:hover {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .quote-action-btn.favorite.active {
+            color: #e74c3c;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .category-btn.active {
+            background: #3498db;
+        }
+
+        .category-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .daily-quote {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .daily-quote::before {
+            content: '"';
+            font-size: 15rem;
+            position: absolute;
+            opacity: 0.1;
+            top: -2rem;
+            left: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .daily-quote .quote-text {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .daily-quote .quote-author {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .quote-text {
+                font-size: 1.2rem;
+            }
+
+            .daily-quote .quote-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood-form.html">Mood Check</a></li>
+            <li><a href="med.html">Meditate</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="drums.html">Drums</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="quotes-container">
+            <div class="daily-quote fade-in">
+                <p class="quote-text">The only way to do great work is to love what you do.</p>
+                <p class="quote-author">Steve Jobs</p>
+            </div>
+
+            <div class="category-filter">
+                <button class="category-btn active">All Quotes</button>
+                <button class="category-btn">Mindfulness</button>
+                <button class="category-btn">Motivation</button>
+                <button class="category-btn">Peace</button>
+                <button class="category-btn">Happiness</button>
+                <button class="category-btn">Success</button>
+                <button class="category-btn">Wisdom</button>
+            </div>
+
+            <div class="quotes-list">
+                <div class="quote-card fade-in">
+                    <span class="quote-category">Mindfulness</span>
+                    <p class="quote-text">Peace comes from within. Do not seek it without.</p>
+                    <p class="quote-author">Buddha</p>
+                    <div class="quote-actions">
+                        <button class="quote-action-btn favorite">
+                            <span>❤</span> Favorite
+                        </button>
+                        <button class="quote-action-btn">
+                            <span>🔗</span> Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quote-card fade-in">
+                    <span class="quote-category">Motivation</span>
+                    <p class="quote-text">The future depends on what you do today.</p>
+                    <p class="quote-author">Mahatma Gandhi</p>
+                    <div class="quote-actions">
+                        <button class="quote-action-btn favorite">
+                            <span>❤</span> Favorite
+                        </button>
+                        <button class="quote-action-btn">
+                            <span>🔗</span> Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quote-card fade-in">
+                    <span class="quote-category">Peace</span>
+                    <p class="quote-text">Happiness is not something ready made. It comes from your own actions.</p>
+                    <p class="quote-author">Dalai Lama</p>
+                    <div class="quote-actions">
+                        <button class="quote-action-btn favorite">
+                            <span>❤</span> Favorite
+                        </button>
+                        <button class="quote-action-btn">
+                            <span>🔗</span> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.category-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                // Add filtering logic here
+            });
+        });
+
+        // Handle favorite toggling
+        document.querySelectorAll('.quote-action-btn.favorite').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+            });
+        });
+
+        // Handle share button
+        document.querySelectorAll('.quote-action-btn:not(.favorite)').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const quoteCard = btn.closest('.quote-card');
+                const quoteText = quoteCard.querySelector('.quote-text').textContent;
+                const quoteAuthor = quoteCard.querySelector('.quote-author').textContent;
+                const shareText = `${quoteText} ${quoteAuthor}`;
+                
+                // Create a temporary input element
+                const input = document.createElement('input');
+                input.value = shareText;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                
+                // Show feedback
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span>✓</span> Copied!';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+
+        // Function to get a random quote (simulated)
+        function updateDailyQuote() {
+            const quotes = [
+                { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+                { text: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
+                { text: "The journey of a thousand miles begins with one step.", author: "Lao Tzu" },
+                { text: "Be the change you wish to see in the world.", author: "Mahatma Gandhi" }
+            ];
+            
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            const dailyQuote = document.querySelector('.daily-quote');
+            dailyQuote.querySelector('.quote-text').textContent = randomQuote.text;
+            dailyQuote.querySelector('.quote-author').textContent = randomQuote.author;
+        }
+
+        // Update daily quote every 24 hours
+        updateDailyQuote();
+        setInterval(updateDailyQuote, 24 * 60 * 60 * 1000);
+    </script>
+</body>
+</html>

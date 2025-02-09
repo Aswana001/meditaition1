@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Drums - MindfulMe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .drum-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .drum-pad {
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drum-pad:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .drum-pad.active {
+            transform: scale(0.95);
+            background: rgba(52, 152, 219, 0.3);
+        }
+
+        .drum-pad span {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .drum-pad p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .instructions {
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .instructions h2 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .instructions p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .key-hint {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 0 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .drum-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .drum-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood-form.html">Mood Check</a></li>
+            <li><a href="med.html">Meditate</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="drums.html">Drums</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="instructions fade-in">
+            <h2>Mindful Drumming</h2>
+            <p>Express yourself through rhythm. Each pad produces a unique sound. Click the pads or use keyboard keys to play.</p>
+            <p>Keyboard shortcuts: <span class="key-hint">1-6</span> for different drum sounds</p>
+        </div>
+
+        <div class="drum-container">
+            <div class="drum-pad fade-in" data-key="1">
+                <span>🥁</span>
+                <p>Tom High</p>
+                <audio src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tom-high.wav"></audio>
+            </div>
+            <div class="drum-pad fade-in" data-key="2">
+                <span>🥁</span>
+                <p>Tom Mid</p>
+                <audio src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tom-mid.wav"></audio>
+            </div>
+            <div class="drum-pad fade-in" data-key="3">
+                <span>🥁</span>
+                <p>Tom Low</p>
+                <audio src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tom-low.wav"></audio>
+            </div>
+            <div class="drum-pad fade-in" data-key="4">
+                <span>🥁</span>
+                <p>Ride</p>
+                <audio src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/ride.wav"></audio>
+            </div>
+            <div class="drum-pad fade-in" data-key="5">
+                <span>🥁</span>
+                <p>Snare</p>
+                <audio src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/snare.wav"></audio>
+            </div>
+            <div class="drum-pad fade-in" data-key="6">
+                <span>🥁</span>
+                <p>Kick</p>
+                <audio src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/kick.wav"></audio>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function playSound(pad) {
+            const audio = pad.querySelector('audio');
+            if (!audio) return;
+            
+            // Reset the audio to start
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            
+            const rect = button.getBoundingClientRect();
+            const x = event.clientX - rect.left - radius;
+            const y = event.clientY - rect.top - radius;
+            
+            ripple.style.width = ripple.style.height = `${diameter}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            
+            button.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Event listeners for click
+        document.querySelectorAll('.drum-pad').forEach(pad => {
+            pad.addEventListener('click', function(e) {
+                playSound(this);
+                this.classList.add('active');
+                createRipple(e);
+                setTimeout(() => this.classList.remove('active'), 100);
+            });
+        });
+
+        // Event listeners for keyboard
+        document.addEventListener('keydown', function(e) {
+            const key = e.key;
+            const pad = document.querySelector(`.drum-pad[data-key="${key}"]`);
+            if (pad) {
+                playSound(pad);
+                pad.classList.add('active');
+                setTimeout(() => pad.classList.remove('active'), 100);
+            }
+        });
+
+        // Preload all audio files
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.load();
+        });
+    </script>
+</body>
+</html>

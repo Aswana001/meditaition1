@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Check - Calm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+            color: #fff;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 1rem;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .page-wrapper {
+            padding-top: 80px; /* Height of nav bar plus some spacing */
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .mood-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .mood-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .mood-option input[type="radio"] {
+            display: none;
+        }
+
+        .mood-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .mood-option label:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mood-option input[type="radio"]:checked + label {
+            background: rgba(52, 152, 219, 0.3);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .mood-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .energy-slider {
+            margin: 2rem 0;
+        }
+
+        .energy-slider input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .energy-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .energy-slider input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        #energyValue {
+            font-size: 1.2rem;
+            color: #3498db;
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .mood-history {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .mood-entry {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .mood-options {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood-form.html">Mood Check</a></li>
+            <li><a href="med.html">Meditate</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="drums.html">Drums</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="card fade-in">
+                <h1>How are you feeling today?</h1>
+                <p>Take a moment to check in with yourself and track your emotional well-being</p>
+            </div>
+
+            <div class="card fade-in">
+                <form id="moodForm">
+                    <div class="form-group">
+                        <h2>Select your mood</h2>
+                        <div class="mood-options">
+                            <div class="mood-option">
+                                <input type="radio" id="happy" name="mood" value="happy" required>
+                                <label for="happy">
+                                    <span class="mood-emoji">😊</span>
+                                    <span>Happy</span>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" id="calm" name="mood" value="calm">
+                                <label for="calm">
+                                    <span class="mood-emoji">😌</span>
+                                    <span>Calm</span>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" id="stressed" name="mood" value="stressed">
+                                <label for="stressed">
+                                    <span class="mood-emoji">😓</span>
+                                    <span>Stressed</span>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" id="anxious" name="mood" value="anxious">
+                                <label for="anxious">
+                                    <span class="mood-emoji">😰</span>
+                                    <span>Anxious</span>
+                                </label>
+                            </div>
+                            <div class="mood-option">
+                                <input type="radio" id="sad" name="mood" value="sad">
+                                <label for="sad">
+                                    <span class="mood-emoji">😢</span>
+                                    <span>Sad</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group energy-slider">
+                        <h2>Energy Level</h2>
+                        <p>How energetic do you feel right now?</p>
+                        <input type="range" id="energy" name="energy" min="1" max="10" value="5">
+                        <p id="energyValue">Energy Level: 5</p>
+                    </div>
+
+                    <div class="form-group">
+                        <h2>Additional Notes</h2>
+                        <textarea id="notes" name="notes" rows="4" placeholder="What's on your mind? How are you feeling?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Get Personalized Recommendations</button>
+                </form>
+            </div>
+
+            <div class="card fade-in">
+                <h2>Your Recent Moods</h2>
+                <div id="moodHistory" class="mood-history">
+                    <!-- Mood history will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update energy level display
+        const energySlider = document.getElementById('energy');
+        const energyValue = document.getElementById('energyValue');
+        
+        energySlider.addEventListener('input', function() {
+            energyValue.textContent = `Energy Level: ${this.value}`;
+        });
+
+        // Store mood in local storage
+        function storeMood(mood, energy, notes) {
+            const moodEntry = {
+                mood,
+                energy,
+                notes,
+                timestamp: new Date().toISOString()
+            };
+
+            let moodHistory = JSON.parse(localStorage.getItem('moodHistory') || '[]');
+            moodHistory.unshift(moodEntry);
+            if (moodHistory.length > 5) moodHistory.pop(); // Keep only last 5 entries
+            localStorage.setItem('moodHistory', JSON.stringify(moodHistory));
+        }
+
+        // Display mood history
+        function displayMoodHistory() {
+            const moodHistory = JSON.parse(localStorage.getItem('moodHistory') || '[]');
+            const historyContainer = document.getElementById('moodHistory');
+            historyContainer.innerHTML = '';
+
+            moodHistory.forEach(entry => {
+                const date = new Date(entry.timestamp);
+                const moodEntry = document.createElement('div');
+                moodEntry.className = 'mood-entry fade-in';
+                moodEntry.innerHTML = `
+                    <p><strong>${entry.mood}</strong></p>
+                    <p>Energy: ${entry.energy}/10</p>
+                    <p><small>${date.toLocaleDateString()}</small></p>
+                `;
+                historyContainer.appendChild(moodEntry);
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('moodForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const mood = document.querySelector('input[name="mood"]:checked').value;
+            const energy = document.getElementById('energy').value;
+            const notes = document.getElementById('notes').value;
+
+            storeMood(mood, energy, notes);
+            
+            if (mood === 'stressed' || mood === 'anxious') {
+                window.location.href = 'med.html';
+            } else if (mood === 'sad') {
+                window.location.href = 'music.html';
+            } else {
+                window.location.href = 'quotes.html';
+            }
+        });
+
+        // Display mood history on page load
+        displayMoodHistory();
+    </script>
+</body>
+</html>

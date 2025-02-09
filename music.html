@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music - Calm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .music-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .playlist {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .track-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .track-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .track-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .track-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .track-info {
+            flex: 1;
+        }
+
+        .track-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .track-description {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .track-duration {
+            font-size: 0.9rem;
+            color: #95a5a6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .track-duration::before {
+            content: "🕒";
+        }
+
+        .custom-audio {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .play-btn {
+            background: #3498db;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #ecf0f1;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background: #3498db;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: #ecf0f1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .category-tab {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .category-tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .category-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood-form.html">Mood Check</a></li>
+            <li><a href="med.html">Meditate</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="drums.html">Drums</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="card fade-in">
+            <h1>Relaxing Music</h1>
+            <p>Find peace in our carefully curated collection of calming melodies</p>
+        </div>
+
+        <div class="music-container fade-in">
+            <div class="category-tabs">
+                <div class="category-tab active">All Tracks</div>
+                <div class="category-tab">Nature Sounds</div>
+                <div class="category-tab">Piano</div>
+                <div class="category-tab">Meditation</div>
+                <div class="category-tab">Sleep</div>
+            </div>
+
+            <div class="playlist">
+                <div class="track-card">
+                    <div class="track-image">
+                        <img src="images/piano.jpg" alt="Peaceful Piano">
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Peaceful Piano</h3>
+                        <p class="track-description">A gentle piano piece to calm your mind and soothe your soul</p>
+                        <div class="track-duration">5:30</div>
+                        <div class="custom-audio" data-audio="la-valse-de-lune-beautiful-piano-piece-200131.mp3">
+                            <button class="play-btn">▶</button>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time-display">0:00</div>
+                            <div class="volume-control">
+                                <span>🔊</span>
+                                <input type="range" class="volume-slider" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-image">
+                        <img src="images/rain.jpg" alt="Rain and Relaxation">
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Rain and Relaxation</h3>
+                        <p class="track-description">Natural rain sounds with soft ambient beats</p>
+                        <div class="track-duration">4:45</div>
+                        <div class="custom-audio" data-audio="rain-and-relaxing-beat-tell-me-why-216570.mp3">
+                            <button class="play-btn">▶</button>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time-display">0:00</div>
+                            <div class="volume-control">
+                                <span>🔊</span>
+                                <input type="range" class="volume-slider" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-image">
+                        <img src="images/meditation.jpg" alt="Instrumental Calm">
+                    </div>
+                    <div class="track-info">
+                        <h3 class="track-title">Instrumental Calm</h3>
+                        <p class="track-description">Soothing instrumental background music for deep relaxation</p>
+                        <div class="track-duration">6:15</div>
+                        <div class="custom-audio" data-audio="relaxing-instrumental-music-backsound-11-215393.mp3">
+                            <button class="play-btn">▶</button>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time-display">0:00</div>
+                            <div class="volume-control">
+                                <span>🔊</span>
+                                <input type="range" class="volume-slider" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class AudioPlayer {
+            constructor(container) {
+                this.container = container;
+                this.audio = new Audio(container.dataset.audio);
+                this.playBtn = container.querySelector('.play-btn');
+                this.progress = container.querySelector('.progress');
+                this.progressBar = container.querySelector('.progress-bar');
+                this.timeDisplay = container.querySelector('.time-display');
+                this.volumeSlider = container.querySelector('.volume-slider');
+                
+                this.isPlaying = false;
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.playBtn.addEventListener('click', () => this.togglePlay());
+                this.audio.addEventListener('timeupdate', () => this.updateProgress());
+                this.progressBar.addEventListener('click', (e) => this.setProgress(e));
+                this.volumeSlider.addEventListener('input', (e) => this.setVolume(e));
+                this.audio.addEventListener('ended', () => this.onEnd());
+            }
+
+            togglePlay() {
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    this.playBtn.textContent = '▶';
+                } else {
+                    // Pause all other players
+                    document.querySelectorAll('.custom-audio').forEach(container => {
+                        if (container !== this.container) {
+                            const player = container.audioPlayer;
+                            if (player && player.isPlaying) {
+                                player.togglePlay();
+                            }
+                        }
+                    });
+                    this.audio.play();
+                    this.playBtn.textContent = '⏸';
+                }
+                this.isPlaying = !this.isPlaying;
+            }
+
+            updateProgress() {
+                const percent = (this.audio.currentTime / this.audio.duration) * 100;
+                this.progress.style.width = percent + '%';
+                this.timeDisplay.textContent = this.formatTime(this.audio.currentTime);
+            }
+
+            setProgress(e) {
+                const width = this.progressBar.clientWidth;
+                const clickX = e.offsetX;
+                const duration = this.audio.duration;
+                this.audio.currentTime = (clickX / width) * duration;
+            }
+
+            setVolume(e) {
+                this.audio.volume = e.target.value / 100;
+            }
+
+            onEnd() {
+                this.isPlaying = false;
+                this.playBtn.textContent = '▶';
+                this.progress.style.width = '0%';
+            }
+
+            formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                seconds = Math.floor(seconds % 60);
+                return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+
+        // Initialize audio players
+        document.querySelectorAll('.custom-audio').forEach(container => {
+            container.audioPlayer = new AudioPlayer(container);
+        });
+
+        // Handle category tabs
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelector('.category-tab.active').classList.remove('active');
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

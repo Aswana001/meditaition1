@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About MindfulMe - Your Meditation Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            color: #fff;
+        }
+
+        .about-section h1, .about-section h2, .about-section h3 {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            margin-top: 2rem;
+        }
+
+        .about-section h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .about-section h3 {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .about-section p {
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+
+        .about-section li {
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .about-section li::before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: -1.5rem;
+            top: 0;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .team-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .team-member {
+            margin: 2rem 0;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .team-member h3 {
+            margin: 0.5rem 0;
+            color: #fff;
+        }
+
+        .team-member p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.5rem 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .browser-support {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .browser-support div {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mood-form.html">Mood Check</a></li>
+            <li><a href="med.html">Meditate</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="drums.html">Drums</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="about-section">
+            <h1><span class="emoji">🧘‍♂️</span> MindfulMe <span class="emoji">🌟</span></h1>
+            
+            <div class="team-section">
+                <h2><span class="emoji">👥</span> Team Innowave</h2>
+                <div class="team-member">
+                    <h3>Aswana Ashok</h3>
+                    <p>Project Lead & Developer</p>
+                </div>
+            </div>
+
+            <h2><span class="emoji">✨</span> Overview</h2>
+            <p>MindfulMe is a beautiful, interactive web application designed to help you find peace and tranquility in your daily life. Whether you're looking to reduce stress, improve focus, or simply find a moment of calm, MindfulMe offers a variety of features to support your meditation journey.</p>
+
+            <h2><span class="emoji">🎯</span> Features</h2>
+            
+            <h3><span class="emoji">🌈</span> Mood Check</h3>
+            <ul>
+                <li>Personalized experience based on your current emotional state</li>
+                <li>Intelligent recommendations for meditation or music</li>
+                <li>Track your mood patterns over time</li>
+            </ul>
+
+            <h3><span class="emoji">🫁</span> Breathing Exercises</h3>
+            <ul>
+                <li>Interactive 4-7-8 breathing technique</li>
+                <li>Beautiful visual animations</li>
+                <li>Progress tracking</li>
+                <li>Particle effects for enhanced focus</li>
+            </ul>
+
+            <h3><span class="emoji">🥁</span> Drum Meditation</h3>
+            <ul>
+                <li>Interactive drum pads with soothing tom sounds</li>
+                <li>Keyboard shortcuts for easy playing</li>
+                <li>Visual feedback with ripple effects</li>
+                <li>Perfect for rhythm-based meditation</li>
+            </ul>
+
+            <h3><span class="emoji">🎵</span> Music Therapy</h3>
+            <ul>
+                <li>Curated collection of relaxing tracks</li>
+                <li>Nature sounds and peaceful melodies</li>
+                <li>Easy-to-use audio player</li>
+                <li>Background music for meditation sessions</li>
+            </ul>
+
+            <h3><span class="emoji">💭</span> Daily Quotes</h3>
+            <ul>
+                <li>Inspirational quotes for motivation</li>
+                <li>Mindfulness reminders</li>
+                <li>Daily wisdom for inner peace</li>
+            </ul>
+
+            <h2><span class="emoji">💻</span> Technical Features</h2>
+            <ul>
+                <li>Pure HTML5, CSS3, and JavaScript</li>
+                <li>Responsive design for all devices</li>
+                <li>Modern animations and transitions</li>
+                <li>Web Audio API for drum sounds</li>
+                <li>No external dependencies required</li>
+            </ul>
+
+            <h2><span class="emoji">🌐</span> Browser Support</h2>
+            <div class="browser-support">
+                <div>Chrome</div>
+                <div>Firefox</div>
+                <div>Safari</div>
+                <div>Edge</div>
+            </div>
+
+            <h2><span class="emoji">📱</span> Mobile Support</h2>
+            <p>MindfulMe is fully responsive and works beautifully on:</p>
+            <ul>
+                <li>Smartphones</li>
+                <li>Tablets</li>
+                <li>Desktop computers</li>
+            </ul>
+
+            <div class="footer">
+                <p>Made with <span class="emoji">❤️</span> by Team Innowave</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
